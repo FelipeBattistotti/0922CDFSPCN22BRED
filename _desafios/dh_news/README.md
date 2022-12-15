@@ -16,5 +16,5 @@ Seguem alguns sites para que possam aprofundar o conhecimento de vocês.
 
 - [w3Schools](https://www.w3schools.com/html/default.asp)
 
-- [MDN](https://www.w3schools.com/html/default.asp)
+- [MDN](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
 
