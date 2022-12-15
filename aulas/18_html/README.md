@@ -1,5 +1,5 @@
 ## Objetivo da aula
-O objetivo desta aula é  entender e praticar sobre como funciona a estrutura do HTML como:
+O objetivo desta aula é  entender e praticar sobre como funciona a estrutura do HTML.
 
 -  Tags e atributos
 -  Tags de textos
