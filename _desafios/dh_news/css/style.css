@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;700&display=swap');
+
+body {
+    font-family: 'Rajdhani', sans-serif;
+}
+
+ h1 {
+    color: #ec183f;
+    font-size: 45px;
+    width: 800px;
+    margin: 0 auto;
+}
+h1 > p> strong{
+    color: gray;
+}
+
+main {
+    width: 800px;
+    margin: 0 auto;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 50px;
+}
+
+h5.data {
+    font-weight: 700;
+    margin: 0 0 0px;
+}
+#imagem {
+    width: 100%;
+}
+
+/* -------------inserindo imagem pelo CSS -----------*/
+
+/* div#img { */
+    /* background-image: url('../img/destaque.webp'); */
+    /* height: 750px; */
+    /* width: 800px; */
+    /* background-color: red; */
+    /* background-size: contain; */
+    /* background-repeat: no-repeat; */
+    /* background-position: center; */
+    /* background-attachment: fixed;  */
+/* } */
+
+ul.redes-sociais {
+    text-align: center;
+    list-style: none;
+}
+
+
+ul.redes-sociais li {
+    display: inline-block;
+    /* height: 0;
+    width:   150px ; */
+}
+
+/* ul.redes-sociais li a  {
+   text-decoration: none;
+
+   
+   usado para o display inline
+} */
+
+ul.redes-sociais li a img {
+    width: 40px;
+    margin: 10px;
+}
