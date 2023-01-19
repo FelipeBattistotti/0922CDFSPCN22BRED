@@ -1,0 +1,54 @@
+
+/* ------seletores----- */
+  body{
+    font-family: 'Rajdhani', sans-serif;
+  }
+
+  h1{
+    color:red;
+    font-size: 45px;
+    font-weight: 700;
+    /* font-style: italic; */
+  }
+
+  main{
+    width: 800px;
+  }
+
+p{
+  line-height: 20px ;
+  font-size: 16px;
+}
+
+h2{
+  color: rgba(210, 21, 21, 0.946) ;
+}
+
+ p.texto-diferente{
+  color: greenyellow;
+ } 
+
+ div#img{
+   height: 600px;
+   width: 800px;
+  background-color: red;
+  background-image: url('../img/destaque.webp') ;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position:  center;
+  background-attachment: fixed;
+ }
+
+ul.redes-sociais{
+  text-align: center;
+  list-style: none;
+ }
+
+ ul.redes-sociais li{
+    display: inline-block;
+ }
+
+ ul.redes-sociais li img{
+    width: 40px;
+
+ }

@@ -1,0 +1,159 @@
+:root{
+	font-size: 62.5%;
+  /* dessa forma podemos o rem a 10px */
+}
+
+body{
+  background: yellow;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*  propriedades de caixa  */
+.caixa-exemplo{
+  width: 250px;
+  height: 250px;
+  background: aqua;
+  border: 3px solid black;
+}
+
+.espaco{
+  /* margin-top: 50px ;
+  margin-bottom: 150px ; */
+  /* margin: 50px 150px 250px 200px ; */
+  padding: 100px;
+}
+
+
+/* Elementos inline / block / inline-block */
+/* main div{
+  display: block;
+  width: 250px;
+  height: 250px;
+  margin: 0 auto;
+} */
+
+.caixaA{
+  background: green;
+}
+.caixaB{
+  background: Blue;
+  /* display: none; */
+}
+.caixaC{
+  background: orangered;
+}
+
+
+
+/* medidas relativas */
+
+
+/* div{
+}
+
+.caixaEM{
+  font-size: 80px;
+  height: 70vh ;
+  width: 50%;
+  background-color: orangered;
+}
+
+.caixaREM{
+  font-size: 80px;
+ 
+  height: 30vh ;
+  width: 50%;
+  background-color: yellowgreen;
+}
+
+.caixaEM h1{
+  
+  font-size: 2em;
+}
+
+.caixaEM h2{
+  
+  font-size: 1em;
+}
+
+.caixaREM h1{
+  
+  font-size: 4rem;
+}
+.caixaREM h1{
+  
+  font-size: 25px;
+}
+
+.caixaREM h2{
+  
+  font-size: 1rem;
+} */
+
+
+
+/* ------------Media Queries mobile Last---------------- */
+
+/* max width - Quer dizer desta largura para baixo */
+ @media(max-width: 1280px){
+  body{
+    background: orange;
+  }
+}
+
+@media(max-width: 900px){
+
+
+  body{
+    background: orange;
+  }
+
+
+}
+
+
+
+@media(max-width: 768px){
+  body{
+    background: blue;
+    font-size: 5rem;
+  }
+
+}
+
+@media(max-width: 480px){
+  body{
+    background: red;
+  }
+} 
+
+
+
+/* ------------Media Queries mobile first---------------- */
+
+/* min-width - Quer dizer desta largura para cima */
+
+
+
+
+
+
+
+/* @media(min-width: 768px){
+  body{
+    background: blue;
+    font-size: 20rem;
+  }
+
+}
+
+@media(min-width: 1280px){
+  body{
+    background: orange;
+  }
+} */
