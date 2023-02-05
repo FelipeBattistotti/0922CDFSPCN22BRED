@@ -1,0 +1,135 @@
+@import url("./global.css");
+
+body > main {
+  color: #575757;
+  min-height: 300px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 100%;
+  flex-grow: 1;
+}
+
+main > section {
+  padding: 4rem;
+}
+
+main > section h1 {
+  padding-top: 2rem;
+  letter-spacing: 0.05rem;
+  font-size: 1.8rem;
+}
+
+main > section form {
+  gap: .3rem;
+  color: #9B9B9B;
+  font-size: .9rem;
+}
+
+main > section form .checkboxes {
+  display: flex;
+  width: 20rem;
+  justify-content: space-between;
+  font-size: .8rem;
+  font-weight: 600;
+}
+
+/* --------inicio CSS formulário ----------- */
+
+input:not([type="file"]), textarea, select {
+  border: .1rem solid #9B9B9B;
+  color: #9B9B9B;
+  resize: none;
+}
+
+input:not([type="file"],[type="radio"], [type="checkbox"] ):focus, select:focus, textarea:focus{
+  outline: none;
+  box-shadow: 0 0 .2rem #c2175b;
+}
+
+input::placeholder{
+  color: #9B9B9B;
+  
+}
+
+button:hover{
+  filter: brightness(130%);
+}
+
+input::file-selector-button{
+  border: none;
+  font-weight: 600;
+  padding: .3rem;
+  background-color: #C4C4C4;
+  color: white;
+  transition: .5s;
+
+  cursor: pointer;
+}
+
+button[type="reset"] {
+  border: none;
+  font-weight: 600;
+  padding: .3rem;
+  background-color: #777777;
+  color: white;
+  transition: .5s;
+}
+
+
+button[type="submit"] {
+  border: none;
+  font-weight: 600;
+  padding: .3rem;
+  background-color: #c2175b;
+  color: white;
+  transition: .5s;
+}
+
+/* --------Fim CSS formulário ----------- */
+
+.file{
+  display: flex ;
+  align-items: center;
+  margin: .3rem 0;
+  gap: .6rem;
+
+}
+
+.file div label{
+    display: inline-block;
+    background-color: #C4C4C4;
+    color: white;
+    border: none;
+    width: 10rem;
+    padding: 2px;
+    text-align: center;
+
+    cursor: pointer;
+}
+
+.file span{
+  color: #9B9B9B;
+}
+
+
+
+main > aside {
+  font-size: 0.9rem;
+  text-align: justify;
+  padding: 4rem;
+  padding-top: 5rem;
+  max-width: 35rem;
+  max-height: 43rem;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  /* border: .5rem solid #c2175b; */
+  position: relative;
+  right: 0rem;
+  left: 0rem;
+  bottom: 0rem;
+  top: 0rem;
+}
+
+
+
