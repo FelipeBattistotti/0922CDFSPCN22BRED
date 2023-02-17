@@ -1,18 +1,26 @@
 console.log('INSTA')
 
-window.addEventListener('load', function() {
+window.addEventListener('load', () => {
 
   // querySelector
   // const button = document.querySelector('button')
   // button.innerText = 'Cadastre-se'
 
   // getElementsByTagName
-  const button = document.getElementsByTagName('button')
-  button[0].innerText = 'Cadastre-se'
+  // const button = document.getElementsByTagName('button')
+  // button[0].innerText = 'Cadastre-se'
 
   // querySelector
-  const userName = document.querySelector('.avatar-content div')
-  userName.innerHTML = '<strong>Nome Usuário</strong>'
+  // const userName = document.querySelector('.avatar-content div')
+  // userName.innerHTML = '<strong>Nome Usuário</strong>'
+
+  // querySelector
+  const userName = document.querySelector('.avatar-content p')
+  userName.innerHTML = '<strong>Logado</strong>'
+
+  // querySelector
+  const button = document.querySelector('div .button')
+  button.innerText = 'Por favor cadastre-se'
 
   // getElementById
   const connect = document.getElementById('connect')
