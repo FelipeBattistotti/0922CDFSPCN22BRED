@@ -53,6 +53,8 @@ buttonAdd.onclick = () => {
 inputTask.onkeydown = (e) => {
   // console.log(e)
 
+  // e.preventDefault()
+
   if (e.key == 'Enter' && inputTask.value != '') {
       addTask()
   }
