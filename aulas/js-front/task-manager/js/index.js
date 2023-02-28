@@ -33,8 +33,6 @@ function createTask(task) {
   tasklist.appendChild(li);
 }
 
-
-
 const addTask = () => {
   //pegando o valor do input
   const newTask = inputTask.value;
