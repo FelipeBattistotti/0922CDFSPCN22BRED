@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" /> <!-- https://mdbootstrap.com -->
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1 class="m-5">📋 Task Manager</h1>
+      <div id="new-task">
+        <div class="form-outline">
+          <input type="text" id="form12" class="form-control" />
+          <label class="form-label" for="form12">🚀 Digite uma tarefa</label>
+        </div>
+        <button id="btnAdd" class="btn btn-primary">add</button>
+      </div>
+      <ul class="task-list">
+        <li class="task-item">
+          <img src="./icons/close.png" id="close" alt="Excluir Tarefa" />
+          <p>content</p>
+          <img src="./icons/check-box-empty.png" id="check" alt="Finalizar Tarefa" />
+        </li>
+
+        <li class="task-item done">
+          <img src="./icons/close.png" id="close" alt="Excluir Tarefa" />
+          <p>content</p>
+          <img src="./icons/check-box-empty.png" id="check" alt="Finalizar Tarefa" />
+        </li>
+
+        <li class="task-item done">
+          <img src="./icons/close.png" id="close" alt="Excluir Tarefa" />
+          <p>content</p>
+          <img src="./icons/check-box-empty.png" id="check" alt="Finalizar Tarefa" />
+        </li>
+      </ul>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script> <!-- https://mdbootstrap.com -->
+    <script src="./js/index.js"></script>
+  </body>
+</html>
