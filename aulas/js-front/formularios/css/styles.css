@@ -78,12 +78,12 @@ body {
   border-color: #e74c3c;
 }
 
-.form-control.success i.fa-check-circle {
+.form-control.success {
   color: #2ecc71;
   visibility: visible;
 }
 
-.form-control.error i.fa-exclamation-circle {
+.form-control.error {
   color: #e74c3c;
   visibility: visible;
 }
