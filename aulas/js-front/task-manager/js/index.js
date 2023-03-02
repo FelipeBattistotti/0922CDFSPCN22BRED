@@ -5,8 +5,16 @@ const inputTask = document.querySelector("#form12");
 
 const tasklist = document.querySelector(".task-list");
 
+function removeTask(taskLi) {
+  taskLi.remove()
+}
+
 function checkTask(taskLi) {
-  taskLi.classList.add("done");
+  taskLi.classList.toggle("done")
+
+  if (taskLi.classList.contains('done'))
+      taskLi.querySelectorAll('img')[1].src = './icons/check.png'
+  else taskLi.querySelectorAll('img')[1].src = './icons/check-box-empty.png'
 }
 
 function createTask(task) {
@@ -16,8 +24,16 @@ function createTask(task) {
   const imgClose = document.createElement("img");
   imgClose.setAttribute("src", "./icons/close.png");
 
+  imgClose.style.cursor = 'pointer'
+
+  imgClose.onclick = () => {
+    removeTask(li)
+  }
+
   const imgCheck = document.createElement("img");
   imgCheck.setAttribute("src", "./icons/check-box-empty.png");
+
+  imgCheck.style.cursor = 'pointer'
 
   imgCheck.onclick = () => {
     checkTask(li);
