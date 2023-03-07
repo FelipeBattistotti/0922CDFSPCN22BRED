@@ -1,11 +1,34 @@
 const form = document.getElementById("form")
 const username = document.getElementById("username")
+const state = document.getElementById("state")
 const email = document.getElementById("email")
 const password = document.getElementById("password")
 const passwordConfirmation = document.getElementById("password-confirmation")
 
+console.log(localStorage.getItem('localStorage'))
+
+// removeItem
+// localStorage.removeItem('localStorage')
+
+// clear - Remove todos os itens do Local Storage
+localStorage.clear()
+
+fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome')
+  .then(response => response.json())
+  // .then(json => console.log(json))
+  .then(json => {
+    json.forEach(function(estado){
+      const optionState = document.createElement('option')
+      optionState.value = estado.sigla
+      optionState.innerText = estado.nome
+      state.append(optionState)
+    })
+  })
+
 form.addEventListener("submit", (e) => {
   e.preventDefault()
+  sessionStorage.setItem('sessionStorage', 'true')
+  localStorage.setItem('localStorage', 'true')
   checkInputs()
 })
 
