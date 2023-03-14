@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "nome": "Silva",
+    "idade": 30,
+    "salario": 1500,
+    "pets": []
+  },
+  {
+    "id": 2,
+    "nome": "Lopes",
+    "idade": 68,
+    "salario": 2000,
+    "pets": [{
+      "nome": "Qwerty",
+      "idade": 10,
+      "tipo": "Peixe"
+    }]
+  },
+  {
+    "id": 3,
+    "nome": "Cruz",
+    "idade": 12,
+    "salario": 0,
+    "pets": []
+  },
+  {
+    "id": 4,
+    "nome": "Vieira",
+    "idade": 31,
+    "salario": 6200,
+    "pets": [{
+      "nome": "Vieirinha",
+      "idade": 4,
+      "tipo": "Cachorro"
+    }]
+  }
+]
