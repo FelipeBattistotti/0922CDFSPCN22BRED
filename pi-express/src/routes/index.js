@@ -3,14 +3,16 @@ const router = express.Router()
 
 const ProductController = require('../controllers/ProductController')
 
-// Product
-router.get('/pessoa', ProductController.showAll)
-// # 1
-router.get('/pessoa/:id', ProductController.showById)
-router.post('/pessoa', ProductController.create)
-// # 2
-router.put('/pessoa/:id', ProductController.update)
-// # 3
-router.delete('/pessoa/:id', ProductController.delete)
+// # Product
+// GET ALL
+router.get('/product', ProductController.showAll)
+// GET By Id
+router.get('/product/:id', ProductController.showById)
+// POST
+router.post('/product', ProductController.create)
+// PUT
+router.put('/product/:id', ProductController.update)
+// DELETE
+router.delete('/product/:id', ProductController.delete)
 
 module.exports = router
