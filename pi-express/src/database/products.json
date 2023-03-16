@@ -1,0 +1,22 @@
+[
+	{
+		"id": "1",
+		"name": "Tênis Adidas",
+		"price": 600
+	},
+	{
+		"id": "2",
+		"name": "Tênis Nike",
+		"price": 700
+	},
+	{
+		"id": "3",
+		"name": "Tênis Olympikus",
+		"price": 200
+	},
+	{
+		"id": "4",
+		"name": "Tênis Penalty",
+		"price": 400
+	}
+]
