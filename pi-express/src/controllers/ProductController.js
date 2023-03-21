@@ -1,10 +1,12 @@
 const products = require('../database/products.json')
 
+const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+
 const ProductController = {
-  showAll(req, res) {
+  showAll: (req, res) => {
     res.json(products)
   },
-  showById(req, res) {
+  showById: (req, res) => {
     const { id } = req.params
     
     const product = products.find(product => String(product.id) === id)
@@ -13,11 +15,11 @@ const ProductController = {
         return res.json(product)
     else return res.status(400).json({ error: 'Produto não encontrado.' })
   },
-  create(req, res) {
+  create: (req, res) => {
     products.push(req.body)
     res.json(products)
   },
-  update(req, res) {
+  update: (req, res) => {
     const { id } = req.params
     
     const productIndex = products.findIndex(product => String(product.id) === id)
@@ -28,7 +30,7 @@ const ProductController = {
     }
     else return res.status(400).json({ error: 'Produto não encontrado.' })
   },
-  delete(req, res) {
+  delete: (req, res) => {
     const { id } = req.params
     
     const productIndex = products.findIndex(product => String(product.id) === id)
@@ -38,6 +40,15 @@ const ProductController = {
         return res.json(products)
     }
     else return res.status(400).json({ error: 'Produto não encontrado.' })
-  }
+  },
+  // Detail from one product
+	detailEJS: (req, res) => {
+		let id = req.params.id
+		let product = products.find(product => product.id == id)
+		res.render('detail', {
+			product,
+			toThousand
+		})
+	}
 }
 module.exports = ProductController
