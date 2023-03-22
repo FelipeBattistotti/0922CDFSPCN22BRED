@@ -61,9 +61,9 @@
                 <a href="#" class="buy-now-button">COMPRAR AGORA</a>
                 <hr>
 
-                <a href="/product/edit/<%= product.id %>" class="action-button edit">Editar Produto</a>
-                <form action="/product/delete/<%= product.id %>?_method=DELETE" method="POST" style="display: inline-flex">
-                  <button type="submit" class="action-button delete">Remover</button>
+                <a href="/product/update/<%= product.id %>" class="action-button edit">Editar Produto</a>
+                <form action="/product/<%= product.id %>?_method=DELETE" method="POST" style="display: inline-flex">
+                  <button type="submit" class="action-button delete">Remover Produto</button>
                 </form>
               </article>
             </div>

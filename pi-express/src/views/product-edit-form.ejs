@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<!-- Include Head -->
+<%- include('includes/head', { title: 'Editar Produto' }) %>
+
+  <body>
+    <!-- Header -->
+    <%- include('includes/header') %>
+    <!-- /Header -->
+
+      <div class="container products-wrapper">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="products-title">Você está editando: <i><%= productToEdit.name %></i></h2>
+          </div>
+        </div>
+        <div class="col-12">
+          <form action="/product/<%= productToEdit.id %>?_method=PUT" method="POST">
+            <div class="row product-detail">
+              <div class="col-12 col-md-6">
+                <label for="name" class="form-label">Nome:</label>
+                <input
+                  id="name"
+                  type="text"
+                  name="name"
+                  placeholder="Informe o nome do produto"
+                  class="form-input"
+                  value="<%= productToEdit.name %>"
+                >
+              </div>
+              <div class="col-12 col-md-6">
+                <label for="price" class="form-label">Preço:</label>
+                <input
+                  id="price"
+                  type="number"
+                  name="price"
+                  placeholder="Informe o preço do produto"
+                  class="form-input"
+                  value="<%= productToEdit.price %>"
+                >
+              </div>
+              <div class="col-12 col-md-6">
+                <label for="discount" class="form-label">Desconto:</label>
+                <input
+                  id="discount"
+                  type="number"
+                  name="discount"
+                  placeholder="Informe o desconto do produto"
+                  class="form-input"
+                  value="<%= productToEdit.discount %>"
+                >
+              </div>
+              <div class="col-12">
+                <label for="description" class="form-label">Descrição:</label>
+                <textarea
+                  id="description"
+                  name="description"
+                  class="form-input"
+                ><%= productToEdit.description %></textarea>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="buy-now-button">Salvar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- /todos los productos -->
+
+      <!-- footer -->
+      <%- include('includes/footer') %>
+      <!-- /footer -->
+  </body>
+
+</html>
