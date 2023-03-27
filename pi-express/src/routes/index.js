@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
   },
   filename: function(req, file, cb) {
     cb(null, Date.now() + "-" + file.originalname)
-  },
+  }
 })
 const upload = multer({ storage: storage })
 
@@ -37,7 +37,7 @@ router.get('/product/update/:id', productController.updateFormEJS)
 // POST - EJS Create
 router.post('/product', upload.any(), productController.createEJS)
 // PUT - EJS Update
-router.put('/product/:id', productController.updateEJS)
+router.put('/product/:id', upload.any(), productController.updateEJS)
 // DELETE - EJS Delete
 router.delete('/product/:id', productController.deleteEJS)
 

@@ -85,15 +85,22 @@ const ProductController = {
   // Update product
   updateEJS: (req, res) => {
     const { id } = req.params
+    let image = ''
     
     const productIndex = products.findIndex(product => String(product.id) === id) // índice
     let productToEdit = products.find(product => product.id == id) // objeto
     
     if (productIndex != -1) {
+        if (req.files[0] !== undefined) {
+            image = req.files[0].filename
+        } else {
+            image = productToEdit.image
+        }
+
         productToEdit = {
           id: productToEdit.id,
           ...req.body,
-          image: productToEdit.image
+          image: image
         }
 
         products[productIndex] = productToEdit // atualiza
