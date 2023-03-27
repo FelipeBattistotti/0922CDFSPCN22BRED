@@ -1,8 +1,25 @@
 const express = require('express')
 const router = express.Router()
+const multer = require('multer')
 
+/**
+ * Controllers
+ */
 const mainController = require('../controllers/MainController')
 const productController = require('../controllers/ProductController')
+
+/**
+ * Multer
+ */
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, 'public/images/products')
+  },
+  filename: function(req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname)
+  },
+})
+const upload = multer({ storage: storage })
 
 // # Main
 // GET ALL
@@ -18,7 +35,7 @@ router.get('/product/create', productController.createFormEJS)
 // GET - EJS Update Form - View
 router.get('/product/update/:id', productController.updateFormEJS)
 // POST - EJS Create
-router.post('/product', productController.createEJS)
+router.post('/product', upload.any(), productController.createEJS)
 // PUT - EJS Update
 router.put('/product/:id', productController.updateEJS)
 // DELETE - EJS Delete

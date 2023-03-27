@@ -60,10 +60,18 @@ const ProductController = {
   },
   // Create product
   createEJS: (req, res) => {
+    let image = ''
+
+    if (req.files[0] !== undefined) {
+        image = req.files[0].filename
+    } else {
+        image = 'default-image.png'
+    }
+
     let newProduct = {
 			id: Number(products[products.length - 1].id) + 1,
 			...req.body,
-      image: 'default-image.png'
+      image: image
 		}
     products.push(newProduct)
     res.redirect('/')

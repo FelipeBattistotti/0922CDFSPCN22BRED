@@ -15,7 +15,7 @@
 					</div>
 				</div>
 				<div class="col-12">
-					<form action="/product" method="POST">
+					<form action="/product" method="POST" enctype="multipart/form-data">
 						<div class="row product-detail">
 							<div class="col-12 col-md-6">
 								<label for="name" class="form-label">Nome:</label>
@@ -32,6 +32,10 @@
 							<div class="col-12">
 								<label for="description" class="form-label">Descrição:</label>
 								<textarea name="description" id="description" class="form-input"></textarea>
+							</div>
+							<div class="col-12 col-md-6">
+								<label for="image" class="form-label">Imagem:</label>
+								<input type="file" id="image" name="image" class="form-input">
 							</div>
 							<div class="col-12">
 								<button type="submit" class="buy-now-button">Salvar</button>
