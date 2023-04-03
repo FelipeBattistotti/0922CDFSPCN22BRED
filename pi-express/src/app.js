@@ -1,3 +1,4 @@
+const log = require('./middlewares/log')
 const routes = require('./routes/index')
 const path = require("path")
 const express = require('express')
@@ -16,6 +17,8 @@ app.set("view engine", "ejs")
 app.set("views", path.resolve("src", "views"))
 // liberando acesso a pasta public
 app.use(express.static(path.resolve("public")))
+// Middleware Log
+app.use(log)
 
 /**
  * Rotas

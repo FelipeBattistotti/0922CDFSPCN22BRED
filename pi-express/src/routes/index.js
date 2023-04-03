@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const multer = require('multer')
 
 /**
  * Controllers
@@ -9,21 +8,14 @@ const mainController = require('../controllers/MainController')
 const productController = require('../controllers/ProductController')
 
 /**
- * Multer
+ * Middlewares
  */
-const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, 'public/images/products')
-  },
-  filename: function(req, file, cb) {
-    cb(null, Date.now() + "-" + file.originalname)
-  }
-})
-const upload = multer({ storage: storage })
+const upload = require('../middlewares/upload') /* Multer */
+const log = require('../middlewares/log')
 
 // # Main
 // GET ALL
-router.get('/', mainController.index)
+router.get('/', mainController.index) // router.get('/', log, mainController.index)
 // GET ALL
 router.get('/search', mainController.search)
 
