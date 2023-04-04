@@ -1,0 +1,3 @@
+O usuário acessou a rota: /
+O usuário acessou a rota: /product/create
+O usuário acessou a rota: /product

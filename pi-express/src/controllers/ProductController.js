@@ -1,3 +1,4 @@
+const { validationResult } = require('express-validator')
 const products = require('../database/products.json')
 
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
@@ -61,6 +62,10 @@ const ProductController = {
   // Create product
   createEJS: (req, res) => {
     let image = ''
+
+    const errors = validationResult(req)
+    if (!errors.isEmpty())
+        res.render('product-create-form', { errors: errors.mapped() }) // ou array()
 
     if (req.files[0] !== undefined) {
         image = req.files[0].filename
