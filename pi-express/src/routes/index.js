@@ -7,6 +7,7 @@ const router = express.Router()
  */
 const mainController = require('../controllers/MainController')
 const productController = require('../controllers/ProductController')
+const userController = require('../controllers/UserController')
 
 /**
  * Middlewares
@@ -19,6 +20,18 @@ const log = require('../middlewares/log')
 router.get('/', mainController.index) // router.get('/', log, mainController.index)
 // GET ALL
 router.get('/search', mainController.search)
+
+// # User
+// GET - EJS Create Form - View
+router.get('/user/create', userController.createFormEJS)
+// POST - EJS Create
+router.post(
+  '/user',
+  body('name')
+    .notEmpty()
+    .withMessage('Nome do Usuário deve ser informado!'),
+    userController.createEJS
+)
 
 // # Product
 // GET - EJS Detail - View
