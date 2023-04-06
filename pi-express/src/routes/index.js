@@ -30,7 +30,7 @@ router.post(
   body('name')
     .notEmpty()
     .withMessage('Nome do Usuário deve ser informado!'),
-    userController.createEJS
+  userController.createEJS
 )
 
 // # Product
@@ -47,6 +47,9 @@ router.post(
   body('name')
     .notEmpty()
     .withMessage('Nome do Produto deve ser informado!'),
+  body('description')
+    .notEmpty()
+    .withMessage('Descrição deve ser informada!'),
   productController.createEJS
 )
 // PUT - EJS Update
