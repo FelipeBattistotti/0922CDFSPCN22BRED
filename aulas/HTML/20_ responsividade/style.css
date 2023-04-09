@@ -100,11 +100,11 @@ body{
 /* ------------Media Queries mobile Last---------------- */
 
 /* max width - Quer dizer desta largura para baixo */
- @media(max-width: 1280px){
+ /* @media(max-width: 1280px){
   body{
     background: orange;
   }
-}
+} */
 
 @media(max-width: 900px){
 

@@ -32,18 +32,18 @@ form.addEventListener("submit", (e) => {
   checkInputs()
 })
 
-username.onfocus = () => {
-  console.log('onfocus()')
-}
+// username.onfocus = () => {
+//   console.log('onfocus()')
+// }
 
 username.onblur = () => {
-  console.log('onblur()')
+  // console.log('onblur()')
   checkUsernameValue(username.value)
 }
 
-username.onchange = () => {
-  console.log('onchange()')
-}
+// username.onchange = () => {
+//   console.log('onchange()')
+// }
 
 const checkUsernameValue = (value) => {
   if (value === "") {
