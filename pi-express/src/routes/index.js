@@ -13,13 +13,19 @@ const userController = require('../controllers/UserController')
  * Middlewares
  */
 const upload = require('../middlewares/upload') /* Multer */
-const log = require('../middlewares/log')
+const log = require('../middlewares/log') /* Log */
 
 // # Main
 // GET ALL
 router.get('/', mainController.index) // router.get('/', log, mainController.index)
 // GET ALL
 router.get('/search', mainController.search)
+
+// # Auth
+// GET - EJS Login Form - View
+router.get('/user/login', userController.loginFormEJS)
+// POST - EJS Login
+router.post('/login', userController.loginEJS)
 
 // # User
 // GET - EJS Create Form - View

@@ -1,5 +1,6 @@
 const { validationResult } = require('express-validator')
 const bcrypt = require('bcrypt')
+
 const users = require('../database/users.json')
 
 const UserController = {
@@ -13,19 +14,29 @@ const UserController = {
     if (!errors.isEmpty())
         res.render('user-create-form', { errors: errors.mapped() }) // ou array()
 
-    let newUser = {
-			id: users.length > 0 ? Number(users[users.length - 1].id) + 1 : 1,
-			...req.body
-		}
+    const user = users.find(user => user.email === req.body.email) // encontra o usuário através do e-mail - e retorna o objeto
 
-    const hash = bcrypt.hashSync(newUser.pwd, 10) // gera o hash da senha
-    newUser.pwd = hash // salva na propriedade senha
+    if (!user) {
+        let newUser = {
+          id: users.length > 0 ? Number(users[users.length - 1].id) + 1 : 1,
+          ...req.body
+        }
+        // delete newUser.pwdConfirm // remove propriedade pwdConfirm - porque não é necessário gravar no banco
 
-    users.push(newUser)
+        const hash = bcrypt.hashSync(newUser.pwd, 10) // gera o hash da senha
+        newUser.pwd = hash // salva na propriedade senha
 
-    console.log('users: ', users)
-
-    res.redirect('/')
+        users.push(newUser)
+        
+        res.redirect('/')
+    } else res.render('user-create-form', { errors: [{ msg: "Usuário já cadastrado!" }] })
+  },
+  // Login form user - View
+  loginFormEJS: (req, res) => {
+    res.render('login')
+  },
+  // Login
+  loginEJS: (req, res) => {
   }
 }
 module.exports = UserController
