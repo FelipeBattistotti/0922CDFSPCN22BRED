@@ -6,7 +6,7 @@ const log = (req, res, next) => {
   if (!fs.existsSync(file)) // verifica se o arquivo existe
       fs.writeFileSync(file, '') // caso não existir - então cria
 
-  fs.appendFileSync(file, 'O usuário acessou a rota: ' + req.url + '\n') // atualiza o arquivo
+  fs.appendFileSync(file, 'O usuário acessou a rota: ' + req.url + ' - ' + new Date() + '\n') // atualiza o arquivo
   next()
 }
 module.exports = log
