@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <!-- Include Head -->
-<%- include('includes/head', { title: 'Incluir Usuário' }) %>
+<%- include('includes/head', { title: 'Login' }) %>
 
 	<body>
 		<!-- Header -->
@@ -11,7 +11,7 @@
 			<div class="container products-wrapper">
 				<div class="row">
 					<div class="col-12">
-						<h2 class="products-title">Formulário de Inclusão de Usuário</h2>
+						<h2 class="products-title">Login</h2>
 					</div>
 				</div>
 				<div class="col-12">
@@ -24,26 +24,18 @@
             </ul>
           <% } %>
 
-					<form action="/user" method="POST">
+					<form action="/login" method="POST">
 						<div class="row product-detail">
-							<div class="col-12">
-								<label for="name" class="form-label">Nome:</label>
-								<input type="text" id="name" name="name" placeholder="Informe o seu nome" class="form-input">
-							</div>
-							<div class="col-12">
+							<div class="col-7">
 								<label for="email" class="form-label">E-mail:</label>
 								<input type="email" id="email" name="email" placeholder="Informe o seu e-mail" class="form-input">
 							</div>
-							<div class="col-12">
+							<div class="col-7">
 								<label for="pwd" class="form-label">Senha:</label>
 								<input type="password" id="pwd" name="pwd" placeholder="Informe a senha" class="form-input">
 							</div>
 							<div class="col-12">
-								<label for="pwdConfirm" class="form-label">Confirmar Senha:</label>
-								<input type="password" id="pwdConfirm" placeholder="Informe a confirmação da senha" class="form-input">
-							</div>
-							<div class="col-12">
-								<button type="submit" class="buy-now-button">Salvar</button>
+								<button type="submit" class="buy-now-button">Entrar</button>
 							</div>
 						</div>
 					</form>
