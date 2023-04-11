@@ -1,4 +1,5 @@
 const path = require("path")
+const cookieParser = require('cookie-parser')
 const express = require('express')
 const methodOverride = require('method-override') // métodos PUT e DELETE
 const app = express()
@@ -12,6 +13,8 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 // métodos PUT e DELETE
 app.use(methodOverride('_method'))
+// Para funcionar os cookies
+app.use(cookieParser())
 
 // instanciando como view engine
 app.set("view engine", "ejs")

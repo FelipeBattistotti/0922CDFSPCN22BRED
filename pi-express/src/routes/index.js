@@ -14,6 +14,7 @@ const userController = require('../controllers/UserController')
  */
 const upload = require('../middlewares/upload') /* Multer */
 const log = require('../middlewares/log') /* Log */
+const auth = require('../middlewares/auth') /* Auth */
 
 // # Main
 // GET ALL
@@ -43,12 +44,13 @@ router.post(
 // GET - EJS Detail - View
 router.get('/product/detail/:id', productController.detailEJS)
 // GET - EJS Create Form - View
-router.get('/product/create', productController.createFormEJS)
+router.get('/product/create', auth, productController.createFormEJS)
 // GET - EJS Update Form - View
-router.get('/product/update/:id', productController.updateFormEJS)
+router.get('/product/update/:id', auth, productController.updateFormEJS)
 // POST - EJS Create
 router.post(
   '/product',
+  auth,
   upload.any(),
   body('name')
     .notEmpty()
@@ -59,9 +61,9 @@ router.post(
   productController.createEJS
 )
 // PUT - EJS Update
-router.put('/product/:id', upload.any(), productController.updateEJS)
+router.put('/product/:id', auth, upload.any(), productController.updateEJS)
 // DELETE - EJS Delete
-router.delete('/product/:id', productController.deleteEJS)
+router.delete('/product/:id', auth, productController.deleteEJS)
 
 // // # Product
 // // GET ALL
