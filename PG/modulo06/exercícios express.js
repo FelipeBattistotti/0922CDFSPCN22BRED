@@ -675,4 +675,257 @@ router.post('/cadastro', [
 
 
 
-// **** FALTAM OS EXERCÍCIOS EXPRESS/ MIDDLEWARES/ Express Validator avançado EM DIANTE
+// ## ****Express Validator avançado****
+
+// ### exercício 1
+
+// > Neste exercício, temos um controlador com um método de login. Devemos
+// > 
+// > 
+// > *reformular este método **IF*** (condição) para verificar se há erros de validação. No caso de haver erros, devemos *redirecionar o usuário*
+// >  à tela de login *com os erros encontrados*
+// > 
+
+// Para fazer isso, precisaremos criar uma constante chamada ***erros*** e vamos atribuí-la à execução da função de ***validationResult***.
+
+// Então em um ***IF*** chamaremos o ***método isEmpty*** do *objeto erros*.
+
+// Caso o método retorne **false** (saberemos que *não está vazio* porque contém erros), devemos *retornar a visualização* de login com os erros.
+
+// Para retornar a visualização de login você deve usar o **método render** do ***objeto response***. Lembre-se que para recuperar os erros você deve usar o ***método array*** do *objeto erros*.
+
+
+const express = require('express');
+const router = express.Router();
+const { validationResult } = require('express-validator');
+
+const userController = {
+  login: (req, res) => {
+      
+    const erros = validationResult(req);
+
+    if (!erros.isEmpty()) {
+    	res.render('login', {erros: erros.array()});
+    }
+
+    if (req.body.name == 'admin' && req.body.pass == 123) {
+    	res.redirect('/dashboard');
+    }
+  }  
+}
+
+
+// # SESSIONS E COOKIES
+
+// ## SESSION
+
+// ### exercício 1 - **Configurando Session**
+
+// Uma pessoa desenvolvedora recebeu uma tarefa pra resolver: os usuários do site precisam fazer login a cada página que querem entrar. Essa pessoa lembrou do conceito de sessão dentro do Express e precisa fazer a implementação, mas está em dúvida e precisa da sua ajuda.
+
+// Sua tarefa nesse exercício é:
+
+// - importar o pacote que trabalha com sessão ("**express-session**") e guardar a importação em uma **constante** chamada **session**.
+// - usar o pacote como um middleware global, através do app.use.
+// - configurar o uso do pacote, inicializando por meio do session({secret: "frase secreta"}).
+
+
+const express = require('express');
+const app = express();
+
+const session = require('express-session');
+app.use(session({secret: "frase secreta"}));
+
+
+// ### exercício 2 - **Trocando o idioma**
+
+// A rede social MyPhotos, especializada em publicação de fotos pelos usuários, está expandindo sua atuação para outros países e precisa ter um jeito de salvar o idioma favorito do usuário.
+
+// Anteriormente, o idioma já podia ser alterado, mas não ficava salvo na sessão. Essa mudança de idioma é capturada pelo servidor através da URL, via **query string**, com o parâmetro **idioma** (lembra do query string? É a informação que vem na URL, usando o ponto de interrogação). A ideia é que, quando o usuário pedir para alterar o idioma, essa informação fique salva, sendo que ela chega por meio de uma rota do tipo get.
+
+// Para concluir essa tarefa, você deve:
+
+// recuperar o idioma, enviado via query string
+
+// salvar esse idioma no objeto de sessão, que fica dentro do objeto de requisição
+
+
+const express = require('express');
+const app = express();
+
+const session = require('express-session');
+app.use(session({ secret: "frase secreta" }));
+
+const alterarIdioma = (req, res) => {
+	const { idioma } = req.query;
+	req.session.idioma = idioma;
+
+	res.redirect('/');
+}
+
+
+// ### exercício 3 - **Validando usuários**
+
+// > Neste exercício, temos um controller e precisaremos validar se *uma variável é definida na sessão.* . Se esta variável não for encontrada, *redirecione para a página de login*
+// > 
+
+// Para fazermos isto, precisamos criar um ***IF*** (condição) para verificar se o ***atributo admin*** existe ou não *dentro da sessão*
+// . Se o atributo admin não estiver configurado redirecione o usuário para a rota "/login"*.*
+
+
+const express = require('express');
+const app = express();
+
+const session = require('express-session');
+app.use(session({secret: "frase secreta"}));
+
+const admin = (req, res) => {
+	if (req.session.admin) {
+		
+	} else {
+		res.redirect('/login');
+	}
+}
+
+
+// ## cookies
+
+// ### exercício 1 - **Configurando cookie**
+
+// Os cookies são super fáceis de usar. Para praticarmos, neste exercício precisamos salvarem um cookie o atributo "***ultimoAcesso***" com o valor da *data atual*.
+
+// O propósito disso é saber, quando o usuário acessar no nosso site novamente, quanto tempo se passou desde a última visita.
+
+// Para isso, dentro do controller vamos usar o ***método cookie*** do objeto ***response***. Este método espera como primeiro parâmetro o nome do cookie, neste caso "***ultimoAcesso***". O segundo parâmetro será a data de acesso, isto podemos obter aplicando ***new Date()***.
+
+
+var express = require('express');
+var cookieParser = require('cookie-parser');
+
+var app = express();
+app.use(cookieParser());
+
+const index = (req, res) => {
+	return res.cookie('ultimoAcesso', new Date());
+}
+
+
+// ### exercício 2 -**Preferências do Usuário**
+
+// > Neste exercício, nosso site pode ser exibido em diferentes estilos css. O estilo padrão é mostrado na tela como "***default***", mas damos a possibilidade ao usuário de alterá-lo. Não apenas alterá-lo, como também guardamos a escolha deles em um ***cookie*** chamado ***estilo***.
+// > 
+
+// No controller do projeto vamos *reenderizar uma visualização*. Nosso objetivo é descobrir se há algum atributo estilo dentro do ***objeto cookie***. Se houver, vamos passar para a visualização o estilo já salvo, se não, passamos o "***default***".
+
+// Para conseguir isso, utilize um condicional ***IF*** para verificar se existe um atributo de estilo dentro do cookie. Se sim, dentro do atributo ***if*** definimos uma variável chamada estilo com o valor *armazenado no cookie*. Caso contrário, em ***ELSE***, defina a variável estilo com o valor "***default***".
+
+
+var express = require('express');
+var cookieParser = require('cookie-parser');
+
+var app = express();
+app.use(cookieParser());
+
+const index = (req, res) => {
+	let estilo;
+
+	if (req.cookies.estilo) {
+		estilo = req.cookies.estilo
+	} else {
+		estilo = 'default';
+	}
+
+	res.render('/', {estilo: estilo});
+}
+
+
+// ### exercício 3 -**Produtos recomendados**
+
+// > Anteriormente no sistema contido deste exercício, era armazenado no navegador do usuário um ***cookie*** chamado "***preferências***". Agora, a partir do controller, queremos mostrar uma *lista de produtos recomendados* de acordo com as *preferências do usuário*.
+// > 
+
+// Para atingir este objetivo, vamos recuperar o valor do ***cookie*** "***preferências***" e armazená-lo numa ***constante*** chamada também de "***preferências***".
+
+// A partir do valor recuperado traremos todos os produtos de ***listaDeProdutos*** cuja ***key*** corresponde a este valor. Nós armazenamos os produtos em uma **constante** chamada "***produtos***".
+
+// E por fim, passamos ao método render a ***constante produtos,*** chamando a view ***"recomendados".***
+
+
+var express = require('express');
+var cookieParser = require('cookie-parser');
+
+var app = express();
+app.use(cookieParser());
+
+const listaDeProdutos = {
+	vestidos: [
+		'vestido broderie',
+		'vestido towel',
+		'vestido voile',
+	],
+	camisetas: [
+		"camisa de retalhos",
+		"camisa bordada",
+	]
+}
+
+const recomendados = (req, res) => {
+	const preferencias = req.cookies.preferencias;
+
+	const produtos = listaDeProdutos[preferencias];
+
+	res.render('recomendados', {produtos: produtos})
+}
+
+
+// ## HASHING
+
+// ### exercício 1 - **Testando o hash**
+
+// Vamos experimentar o funcionamento do módulo hash. A ideia é, dado uma constante que tenha como valor uma senha, aplicar o método hashSync para a encriptar.
+
+// Primeiro você deve declarar a constante bcrypt e iniciá-la com o require do módulo bcrypt.
+
+// Criar uma nova constante chamada hash e atribuir o resultado da aplicação do método hashSync a senha.
+
+// Por fim, devemos fazer um console.log para mostrar o valor da constante hash.
+
+
+const password = '123456';
+const bcrypt = require('bcrypt');
+const hash = bcrypt.hashSync(password, 10);
+console.log(hash);
+
+
+// ### exercício 2 - ****Validando informação "hasheada"****
+
+// A idéia de usar o hash é salvar informações confidenciais sem revelar seu conteúdo original. Mas o que acontece quando precisamos recuperar essas informações para, por exemplo, validar o login de um usuário?
+
+// Neste exemplo, já temos uma sequência de texto criptografada anteriormente, que armazenamos na constante hash1. Nosso objetivo é usar o método de comparação de hashes do bcrypt, onde passando o texto puro e o hash a ser comparado, sendo que o resultado do método deve ser guardado em uma constante chamada comparaHash.
+
+// Dentro do if, execute um console.log que diga 'os hashes são iguais'.
+
+
+const bcrypt = require('bcrypt');
+const hash1 = bcrypt.hashSync('123456', 10);
+const comparaHash = bcrypt.compareSync('123456', hash1)
+
+if (comparaHash) {
+    console.log('Os hashes são iguais');
+}
+
+
+// ### exercício 3 - ****Utilizando o método compareSync****
+
+// Neste exemplo, temos definida a constante hash. Ela guarda dentro dela o valor "123456" criptografado.
+
+// Nosso objetivo é verificar se "123456" corresponde ao valor do hash. Para isso, devemos usar o método compareSync do módulo bcrypt e comparar o resultado dentro de um if. Finalmente, dentro do if vamos executar um console.log que diz 'a senha está correta'.
+
+
+const bcrypt = require('bcrypt');
+const hash = bcrypt.hashSync('123456', 10);
+const password = "123456";
+
+if (bcrypt.compareSync("123456", hash)) {
+	console.log('el password es correcto');
+}
