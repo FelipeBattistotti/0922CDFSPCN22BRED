@@ -1,5 +1,5 @@
 const { validationResult } = require('express-validator')
-const products = require('../database/products.json')
+const { Product } = require('../models')
 
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
 
@@ -47,13 +47,19 @@ const ProductController = {
    * EJS
    */
   // Detail from one product
-	detailEJS: (req, res) => {
+	detailEJS: async (req, res) => {
 		let id = req.params.id
-		let product = products.find(product => product.id == id)
-		res.render('detail', {
-			product,
-			toThousand
-		})
+
+    try {
+      const product = await Product.findByPk(id)
+
+      res.render('detail', {
+        product,
+        toThousand
+      })
+    } catch (error) {
+      res.status(400).json({ error })
+    }
 	},
   // Create form product - View
   createFormEJS: (req, res) => {
