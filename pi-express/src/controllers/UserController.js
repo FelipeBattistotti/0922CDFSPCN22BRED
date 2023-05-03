@@ -2,6 +2,7 @@ const { validationResult } = require('express-validator')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
+const { User } = require('../models')
 const users = require('../database/users.json')
 
 const UserController = {
@@ -10,27 +11,34 @@ const UserController = {
     res.render('user-create-form')
   },
   // Create user
-  createEJS: (req, res) => {
+  createEJS: async (req, res) => {
     const errors = validationResult(req)
     if (!errors.isEmpty())
         res.render('user-create-form', { errors: errors.mapped() }) // ou array()
 
-    const user = users.find(user => user.email === req.body.email) // encontra o usuário através do e-mail - e retorna o objeto
-
-    if (!user) {
-        let newUser = {
-          id: users.length > 0 ? Number(users[users.length - 1].id) + 1 : 1,
-          ...req.body
+    try {
+      const user = await User.findOne({
+        where: {
+          email: req.body.email
         }
-        // delete newUser.pwdConfirm // remove propriedade pwdConfirm - porque não é necessário gravar no banco
+      }) // encontra o usuário através do e-mail - e retorna o objeto
 
-        const hash = bcrypt.hashSync(newUser.pwd, 10) // gera o hash da senha
-        newUser.pwd = hash // salva na propriedade senha
+      if (!user) {
+          let newUser = {
+            ...req.body
+          }
+          // delete newUser.pwdConfirm // remove propriedade pwdConfirm - porque não é necessário gravar no banco
 
-        users.push(newUser)
-        
-        res.redirect('/')
-    } else res.render('user-create-form', { errors: [{ msg: "Usuário já cadastrado!" }] })
+          const hash = bcrypt.hashSync(newUser.pwd, 10) // gera o hash da senha
+          newUser.pwd = hash // salva na propriedade senha
+
+          await User.create(newUser) // cria o registro no banco de dados
+
+          res.redirect('/')
+      } else res.render('user-create-form', { errors: [{ msg: "Usuário já cadastrado!" }] })
+    } catch (error) {
+      res.status(400).json({ error })
+    }
   },
   // Login form user - View
   loginFormEJS: (req, res) => {
