@@ -85,7 +85,7 @@ const ProductController = {
         image: image
       }
 
-      await Product.create(newProduct)
+      await Product.create(newProduct) // cria o registro no banco de dados
 
       res.redirect('/')
     } catch (error) {
@@ -131,7 +131,7 @@ const ProductController = {
                 id: id
               }
             }
-          )
+          ) // atualiza o registro no banco de dados
 
           res.redirect('/')
       } else return res.status(400).json({ error: 'Produto não encontrado.' })
