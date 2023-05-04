@@ -48,7 +48,7 @@ const ProductController = {
    */
   // Detail from one product
 	detailEJS: async (req, res) => {
-		let id = req.params.id
+		const id = req.params.id
 
     try {
       const product = await Product.findByPk(id)
@@ -66,71 +66,95 @@ const ProductController = {
     res.render('product-create-form')
   },
   // Create product
-  createEJS: (req, res) => {
+  createEJS: async (req, res) => {
     let image = ''
 
     const errors = validationResult(req)
     if (!errors.isEmpty())
         res.render('product-create-form', { errors: errors.mapped() }) // ou array()
 
-    if (req.files[0] !== undefined) {
+    try {
+      if (req.files[0] !== undefined) {
         image = req.files[0].filename
-    } else {
+      } else {
         image = 'default-image.png'
-    }
+      }
+      
+      let newProduct = {
+        ...req.body,
+        image: image
+      }
 
-    let newProduct = {
-			id: Number(products[products.length - 1].id) + 1,
-			...req.body,
-      image: image
-		}
-    products.push(newProduct)
-    res.redirect('/')
+      await Product.create(newProduct)
+
+      res.redirect('/')
+    } catch (error) {
+      res.status(400).json({ error })
+    }
   },
   // Update form product - View
-  updateFormEJS: (req, res) => {
-    let id = req.params.id
-		let productToEdit = products.find(product => product.id == id)
-		res.render('product-edit-form', { productToEdit })
+  updateFormEJS: async (req, res) => {
+    const id = req.params.id
+
+    try {
+      const productToEdit = await Product.findByPk(id)
+
+      res.render('product-edit-form', { productToEdit })
+    } catch (error) {
+      res.status(400).json({ error })
+    }
   },
   // Update product
-  updateEJS: (req, res) => {
+  updateEJS: async (req, res) => {
     const { id } = req.params
     let image = ''
     
-    const productIndex = products.findIndex(product => String(product.id) === id) // índice
-    let productToEdit = products.find(product => product.id == id) // objeto
+    try {
+      const productToEdit = await Product.findByPk(id)
     
-    if (productIndex != -1) {
-        if (req.files[0] !== undefined) {
-            image = req.files[0].filename
-        } else {
-            image = productToEdit.image
-        }
+      if (productToEdit != undefined) {
+          if (req.files[0] !== undefined) {
+              image = req.files[0].filename
+          } else {
+              image = productToEdit.image
+          }
 
-        productToEdit = {
-          id: productToEdit.id,
-          ...req.body,
-          image: image
-        }
+          let product = {
+            ...req.body,
+            image: image
+          }
 
-        products[productIndex] = productToEdit // atualiza
+          await Product.update(
+            product,
+            {
+              where: {
+                id: id
+              }
+            }
+          )
 
-        res.redirect('/')
+          res.redirect('/')
+      } else return res.status(400).json({ error: 'Produto não encontrado.' })
+
+    } catch (error) {
+      res.status(400).json({ error })
     }
-    else return res.status(400).json({ error: 'Produto não encontrado.' })
   },
   // Delete product
-  deleteEJS: (req, res) => {
+  deleteEJS: async (req, res) => {
     const { id } = req.params
-    
-    const productIndex = products.findIndex(product => String(product.id) === id)
-  
-    if (productIndex != -1) {
-        products.splice(productIndex, 1)
-        res.redirect('/')
+
+    try {
+      await Product.destroy({
+        where: {
+          id: id
+        }
+      }) // remove o registro do banco de dados
+
+      res.redirect('/')
+    } catch (error) {
+      res.status(400).json({ error })
     }
-    else return res.status(400).json({ error: 'Produto não encontrado.' })
   }
 }
 module.exports = ProductController

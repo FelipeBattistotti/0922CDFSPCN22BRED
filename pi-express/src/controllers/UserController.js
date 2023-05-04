@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 const { User } = require('../models')
-const users = require('../database/users.json')
 
 const UserController = {
   // Create form user - View
@@ -45,8 +44,12 @@ const UserController = {
     res.render('login')
   },
   // Login
-  loginEJS: (req, res) => {
-    const user = users.find(user => user.email === req.body.email) // encontra o usuário através do e-mail - e retorna o objeto
+  loginEJS: async (req, res) => {
+    const user = await User.findOne({
+      where: {
+        email: req.body.email
+      }
+    }) // encontra o usuário através do e-mail - e retorna o objeto
 
     if (user && bcrypt.compareSync(req.body.pwd, user.pwd)) { // compara a senha recebida no body com a senha gravada no banco de dados
         const token = jwt.sign({ id: user.id, email: user.email }, 'segredo') // gera o token do usuário com JWT
