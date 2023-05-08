@@ -12,8 +12,8 @@ module.exports = (sequelize, DataType) => {
     image: DataType.STRING(100),
     id_product_type: DataType.INTEGER
   }, {
-    timestamps: false,
-    tableName: 'product'
+    tableName: 'product',
+    timestamps: false
   })
   return Product
 }
