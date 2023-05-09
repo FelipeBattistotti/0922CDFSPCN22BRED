@@ -58,7 +58,7 @@ const ProductController = {
         include: {
           model: ProductType,
           as: 'productType',
-          require: true // aplica INNER JOIN
+          required: true // aplica INNER JOIN
         }
       })
 
