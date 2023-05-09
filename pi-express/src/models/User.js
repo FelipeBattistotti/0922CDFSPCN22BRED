@@ -12,5 +12,11 @@ module.exports = (sequelize, DataType) => {
     tableName: 'user',
     timestamps: false
   })
+  User.associate = (modelsList) => {
+    User.hasMany(modelsList.Order, {
+      foreignKey: 'id_user',
+      as: 'order'
+    })
+  }
   return User
 }

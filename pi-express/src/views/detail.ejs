@@ -28,6 +28,9 @@
                 <h2 class="product-detail-title">
                   <%= product.name %>
                 </h2>
+                <h3>
+                  <%= product.productType.name %>
+                </h3>
                 <% if(product.discount> 0) {
                   let finalPrice = (product.price * ((100 - product.discount) / 100)).toFixed(0)
                 %>

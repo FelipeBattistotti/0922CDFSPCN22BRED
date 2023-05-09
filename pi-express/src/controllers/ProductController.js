@@ -1,5 +1,5 @@
 const { validationResult } = require('express-validator')
-const { Product } = require('../models')
+const { Product, ProductType } = require('../models')
 
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
 
@@ -51,7 +51,16 @@ const ProductController = {
 		const id = req.params.id
 
     try {
-      const product = await Product.findByPk(id)
+      const product = await Product.findOne({
+        where: {
+          id: id
+        },
+        include: {
+          model: ProductType,
+          as: 'productType',
+          require: true // aplica INNER JOIN
+        }
+      })
 
       res.render('detail', {
         product,
