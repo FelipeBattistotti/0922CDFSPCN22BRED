@@ -31,11 +31,9 @@
               <div class="col-12 col-md-6">
                 <label for="price" class="form-label">Tipo:</label>
 								<select id="id_product_type" name="id_product_type" class="form-input">
-									<option value="1">Tênis</option>
-									<option value="2">Roupas</option>
-									<option value="3">Skate</option>
-									<option value="4">Eletrônicos</option>
-									<option value="5">Artigos casa</option>
+									<% for (var i = 0; i < typeOptions.length; i++) { %>
+                    <option value="<%= typeOptions[i].value %>" <% if (typeOptions[i].value === productToEdit.id_product_type) { %>selected<% } %>><%= typeOptions[i].desc %></option>
+                  <% } %>
 								</select>
               </div>
               <div class="col-12 col-md-6">

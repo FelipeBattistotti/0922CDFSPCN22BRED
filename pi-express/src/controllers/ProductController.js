@@ -3,6 +3,14 @@ const { Product, ProductType } = require('../models')
 
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
 
+const typeOptions = [
+  { value: 1, desc: 'Tênis' },
+  { value: 2, desc: 'Roupas' },
+  { value: 3, desc: 'Skate' },
+  { value: 4, desc: 'Eletrônicos' },
+  { value: 5, desc: 'Artigos casa' },
+]
+
 const ProductController = {
   showAll: (req, res) => {
     res.json(products)
@@ -108,7 +116,13 @@ const ProductController = {
     try {
       const productToEdit = await Product.findByPk(id)
 
-      res.render('product-edit-form', { productToEdit })
+      res.render(
+        'product-edit-form',
+        {
+          productToEdit,
+          typeOptions
+        }
+      )
     } catch (error) {
       res.status(400).json({ error })
     }
