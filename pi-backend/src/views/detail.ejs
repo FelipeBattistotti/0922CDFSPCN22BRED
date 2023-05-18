@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<!-- Include Head -->
+<%- include('includes/head', {title: 'Detalhe do Produto' }) %>
+
+  <body>
+    <!-- Header -->
+    <%- include('includes/header') %>
+    <!-- /Header -->
+
+      <!-- product detail -->
+      <div class="container products-wrapper">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="products-title">Detalhe do produto: <%= product.name %></h2>
+          </div>
+        </div>
+        <div class="product-detail">
+          <div class="row">
+            <div class="col-12 col-lg-8">
+              <img src="/images/products/<%= product.image %>" alt="product image" class="product-detail-img">
+              <p class="product-detail-description">
+                <%= product.description %>
+              </p>
+            </div>
+            <div class="col-12 col-lg-4">
+              <article class="product-detail-info">
+                <h2 class="product-detail-title">
+                  <%= product.name %>
+                </h2>
+                <h3>
+                  <%= product.productType.name %>
+                </h3>
+                <% if(product.discount> 0) {
+                  let finalPrice = (product.price * ((100 - product.discount) / 100)).toFixed(0)
+                %>
+                  <p class="product-detail-price small">
+                    <span>R$<%= toThousand(product.price) %></span>
+                    /
+                    <b>
+                      <%= product.discount %>% OFF
+                    </b>
+                  </p>
+                  <p class="product-detail-price">
+                    R$<%= toThousand(finalPrice) %>
+                  </p>
+                <% } else { %>
+                    <p class="product-detail-price">
+                      R$<%= toThousand(product.price) %>
+                    </p>
+                <% } %>
+
+                <ul class="actions-list">
+                  <li>
+                    <i class="fas fa-credit-card"></i>
+                    <p>Pague em 12 vezes sem juros</p>
+                  </li>
+                  <li>
+                    <i class="fas fa-store"></i>
+                    <p>Retirada gratuita nos locais de venda</p>
+                  </li>
+                </ul>
+
+                <a href="#" class="buy-now-button">COMPRAR AGORA</a>
+                <hr>
+
+                <a href="/product/update/<%= product.id %>" class="action-button edit">Editar Produto</a>
+                <form action="/product/<%= product.id %>?_method=DELETE" method="POST" style="display: inline-flex">
+                  <button type="submit" class="action-button delete">Remover Produto</button>
+                </form>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /product detail -->
+
+      <!-- footer -->
+      <%- include('includes/footer') %>
+      <!-- /footer -->
+  </body>
+
+</html>

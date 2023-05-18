@@ -1,0 +1,50 @@
+[
+  {
+    "id": "1",
+    "name": "Cafeteira Moulinex Dolce Gusto",
+    "description": "Cafeteira Moulinex Dolce Gusto",
+    "price": 100,
+    "discount": 50,
+    "image": "img-cafeteira-moulinex.jpg"
+  },
+  {
+    "id": "2",
+    "name": "Teclado Apple Magic",
+    "description": "Teclado Apple Magic",
+    "price": 11399,
+    "discount": 0,
+    "image": "img-apple-magic-keyboard.jpg"
+  },
+  {
+    "id": "3",
+    "name": "Mouse Logitech M280",
+    "description": "Mouse Logitech M280",
+    "price": 1200,
+    "discount": 10,
+    "image": "img-mouse-logitech.jpg"
+  },
+  {
+    "id": "4",
+    "name": "Macbook Pro 2022",
+    "description": "Macbook Pro 2022",
+    "price": 500,
+    "discount": 3,
+    "image": "img-macbook-pro-2019.jpg"
+  },
+  {
+    "id": "5",
+    "name": "Samsung Galaxy S10",
+    "description": "Samsung Galaxy S10",
+    "price": 72999,
+    "discount": 25,
+    "image": "img-samsung-galaxy-s10.jpg"
+  },
+  {
+    "id": "6",
+    "name": "Notebook Lenovo I3 Intel 8gb RAM",
+    "description": "Notebook Lenovo I3 Intel 8gb RAM",
+    "price": 36700,
+    "discount": 5,
+    "image": "img-laptop-lenovo.jpg"
+  }
+]

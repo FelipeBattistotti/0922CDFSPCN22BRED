@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<!-- Include Head -->
+<%- include('includes/head', { title: 'Login' }) %>
+
+	<body>
+		<!-- Header -->
+		<%- include('includes/header') %>
+		<!-- /Header -->
+
+			<div class="container products-wrapper">
+				<div class="row">
+					<div class="col-12">
+						<h2 class="products-title">Login</h2>
+					</div>
+				</div>
+				<div class="col-12">
+
+          <% if (typeof errors !== 'undefined') { %>
+            <ul>
+              <% for(let error in errors) { %>
+                <li> <%= errors[error].msg %> </li>
+              <% } %>
+            </ul>
+          <% } %>
+
+					<form action="/login" method="POST">
+						<div class="row product-detail">
+							<div class="col-7">
+								<label for="email" class="form-label">E-mail:</label>
+								<input type="email" id="email" name="email" placeholder="Informe o seu e-mail" class="form-input">
+							</div>
+							<div class="col-7">
+								<label for="pwd" class="form-label">Senha:</label>
+								<input type="password" id="pwd" name="pwd" placeholder="Informe a senha" class="form-input">
+							</div>
+							<div class="col-12">
+								<button type="submit" class="buy-now-button">Entrar</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<!-- footer -->
+			<%- include('includes/footer') %>
+			<!-- /footer -->
+	</body>
+
+</html>
