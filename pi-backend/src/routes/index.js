@@ -18,19 +18,13 @@ const auth = require('../middlewares/auth') /* Auth */
 
 // # Main
 // GET ALL
-// router.get('/', mainController.index) // router.get('/', log, mainController.index)
-// GET ALL
 router.get('/search', mainController.search)
 
 // # Auth
-// GET - EJS Login Form - View
-router.get('/user/login', userController.loginFormEJS)
 // POST - EJS Login
 router.post('/login', userController.loginEJS)
 
 // # User
-// GET - EJS Create Form - View
-router.get('/user/create', userController.createFormEJS)
 // POST - EJS Create
 router.post(
   '/user',

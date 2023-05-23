@@ -91,7 +91,7 @@ const ProductController = {
         res.status(400).json({ error: errors.mapped() })
 
     try {
-      if (req.files[0] !== undefined) {
+      if (req.files && req.files[0]) {
         image = req.files[0].filename
       } else {
         image = 'default-image.png'

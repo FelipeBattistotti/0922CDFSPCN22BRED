@@ -5,10 +5,6 @@ const jwt = require('jsonwebtoken')
 const { User } = require('../models')
 
 const UserController = {
-  // Create form user - View
-  createFormEJS: (req, res) => {
-    res.render('user-create-form')
-  },
   // Create user
   createEJS: async (req, res) => {
     const errors = validationResult(req)
@@ -39,10 +35,6 @@ const UserController = {
       res.status(400).json({ error })
     }
   },
-  // Login form user - View
-  loginFormEJS: (req, res) => {
-    res.render('login')
-  },
   // Login
   loginEJS: async (req, res) => {
     try {
@@ -54,10 +46,9 @@ const UserController = {
       
       if (user && bcrypt.compareSync(req.body.pwd, user.pwd)) { // compara a senha recebida no body com a senha gravada no banco de dados
         const token = jwt.sign({ id: user.id, email: user.email }, 'segredo') // gera o token do usuário com JWT
-        res.cookie('token', token, { maxAge: 2592000000 }) // expira em 30 dias
+        res.status(200).json({ token })
         
-        res.redirect('/')
-      } else res.render('login', { errors: [{ msg: "Usuário ou Senha incorretos!" }] })
+      } else res.status(400).json({ error: "Usuário ou Senha incorretos!" })
     } catch (error) {
       res.status(400).json({ error })
     }
