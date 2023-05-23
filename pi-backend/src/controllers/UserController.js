@@ -9,7 +9,7 @@ const UserController = {
   createEJS: async (req, res) => {
     const errors = validationResult(req)
     if (!errors.isEmpty())
-        res.render('user-create-form', { errors: errors.mapped() }) // ou array()
+        res.status(400).json({ error: errors.mapped() }) // ou array()
 
     try {
       const user = await User.findOne({
@@ -29,8 +29,7 @@ const UserController = {
 
           await User.create(newUser) // cria o registro no banco de dados
 
-          res.redirect('/')
-      } else res.render('user-create-form', { errors: [{ msg: "Usuário já cadastrado!" }] })
+      } else res.status(400).json({ error: "Usuário já cadastrado!" })
     } catch (error) {
       res.status(400).json({ error })
     }
