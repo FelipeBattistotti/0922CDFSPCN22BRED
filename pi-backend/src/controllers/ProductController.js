@@ -12,50 +12,8 @@ const typeOptions = [
 ]
 
 const ProductController = {
-  showAll: (req, res) => {
-    res.json(products)
-  },
-  showById: (req, res) => {
-    const { id } = req.params
-    
-    const product = products.find(product => String(product.id) === id)
-  
-    if (product)
-        return res.json(product)
-    else return res.status(400).json({ error: 'Produto não encontrado.' })
-  },
-  create: (req, res) => {
-    products.push(req.body)
-    res.json(products)
-  },
-  update: (req, res) => {
-    const { id } = req.params
-    
-    const productIndex = products.findIndex(product => String(product.id) === id)
-  
-    if (productIndex != -1) {
-        products[productIndex] = req.body
-        return res.json(products)
-    }
-    else return res.status(400).json({ error: 'Produto não encontrado.' })
-  },
-  delete: (req, res) => {
-    const { id } = req.params
-    
-    const productIndex = products.findIndex(product => String(product.id) === id)
-  
-    if (productIndex != -1) {
-        products.splice(productIndex, 1)
-        return res.json(products)
-    }
-    else return res.status(400).json({ error: 'Produto não encontrado.' })
-  },
-
-  /**
-   * EJS
-   */
   // Detail from one product
-	detailEJS: async (req, res) => {
+	detail: async (req, res) => {
 		const id = req.params.id
 
     try {
@@ -78,12 +36,8 @@ const ProductController = {
       res.status(400).json({ error })
     }
 	},
-  // Create form product - View
-  createFormEJS: (req, res) => {
-    res.render('product-create-form')
-  },
   // Create product
-  createEJS: async (req, res) => {
+  create: async (req, res) => {
     let image = ''
 
     const errors = validationResult(req)
@@ -109,26 +63,8 @@ const ProductController = {
       res.status(400).json({ error })
     }
   },
-  // Update form product - View
-  updateFormEJS: async (req, res) => {
-    const id = req.params.id
-
-    try {
-      const productToEdit = await Product.findByPk(id)
-
-      res.render(
-        'product-edit-form',
-        {
-          productToEdit,
-          typeOptions
-        }
-      )
-    } catch (error) {
-      res.status(400).json({ error })
-    }
-  },
   // Update product
-  updateEJS: async (req, res) => {
+  update: async (req, res) => {
     const { id } = req.params
     let image = ''
     
@@ -164,7 +100,7 @@ const ProductController = {
     }
   },
   // Delete product
-  deleteEJS: async (req, res) => {
+  delete: async (req, res) => {
     const { id } = req.params
 
     try {

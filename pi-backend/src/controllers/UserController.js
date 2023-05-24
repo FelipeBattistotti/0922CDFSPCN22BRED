@@ -6,7 +6,7 @@ const { User } = require('../models')
 
 const UserController = {
   // Create user
-  createEJS: async (req, res) => {
+  create: async (req, res) => {
     const errors = validationResult(req)
     if (!errors.isEmpty())
         res.status(400).json({ error: errors.mapped() }) // ou array()
@@ -22,7 +22,6 @@ const UserController = {
           let newUser = {
             ...req.body
           }
-          // delete newUser.pwdConfirm // remove propriedade pwdConfirm - porque não é necessário gravar no banco
 
           const hash = bcrypt.hashSync(newUser.pwd, 10) // gera o hash da senha
           newUser.pwd = hash // salva na propriedade senha
@@ -35,7 +34,7 @@ const UserController = {
     }
   },
   // Login
-  loginEJS: async (req, res) => {
+  login: async (req, res) => {
     try {
       const user = await User.findOne({
         where: {
