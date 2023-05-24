@@ -16,10 +16,6 @@ const upload = require('../middlewares/upload') /* Multer */
 const log = require('../middlewares/log') /* Log */
 const auth = require('../middlewares/auth') /* Auth */
 
-// # Main
-// GET ALL
-router.get('/search', mainController.search)
-
 // # Auth
 // POST - Login
 router.post('/login', userController.login)
