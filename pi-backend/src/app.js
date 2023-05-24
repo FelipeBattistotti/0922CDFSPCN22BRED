@@ -2,6 +2,7 @@ const path = require("path")
 const cookieParser = require('cookie-parser')
 const express = require('express')
 const methodOverride = require('method-override') // métodos PUT e DELETE
+const cors = require('cors')
 const app = express()
 
 const log = require('./middlewares/log')
@@ -15,6 +16,8 @@ app.use(express.json())
 app.use(methodOverride('_method'))
 // Para funcionar os cookies
 app.use(cookieParser())
+// Para funcionar o CORS
+app.use(cors())
 
 // liberando acesso a pasta public
 app.use(express.static(path.resolve("public")))
