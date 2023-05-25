@@ -5,6 +5,7 @@
 
 body{
   background: yellow;
+ 
 }
 
 *{
@@ -13,20 +14,22 @@ body{
   box-sizing: border-box;
 }
 
+
+
 /*  propriedades de caixa  */
-.caixa-exemplo{
+/* .caixa-exemplo{
   width: 250px;
   height: 250px;
   background: aqua;
   border: 3px solid black;
-}
+} */
 
-.espaco{
+/* .espaco{ */
   /* margin-top: 50px ;
   margin-bottom: 150px ; */
   /* margin: 50px 150px 250px 200px ; */
-  padding: 100px;
-}
+  /* padding: 100px;
+} */
 
 
 /* Elementos inline / block / inline-block */
@@ -37,18 +40,52 @@ body{
   margin: 0 auto;
 } */
 
-.caixaA{
+/* .caixaA{
   background: green;
 }
 .caixaB{
   background: Blue;
-  /* display: none; */
 }
 .caixaC{
   background: orangered;
+} */
+main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
+
+ p{
+  font-size: 20px;
+  
+}
+
+.caixas{
+  height: 100vh;
+  max-width:100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+  border: 2px solid black;
+  background-color: antiquewhite;
+}
+
+.divisor{
+  display: none;
+}
 
 /* medidas relativas */
 
@@ -106,11 +143,19 @@ body{
   }
 } */
 
-@media(max-width: 900px){
 
+@media(max-width: 900px){
+  .caixas{
+    justify-content: center;
+  }
 
   body{
     background: orange;
+  }
+
+  .box{
+    
+    border: 2px solid rgb(11, 151, 206);
   }
 
 
@@ -119,8 +164,13 @@ body{
 
 
 @media(max-width: 768px){
+ 
+ 
   body{
     background: blue;
+    
+  }
+  p{
     font-size: 5rem;
   }
 
