@@ -1,8 +1,6 @@
 const { validationResult } = require('express-validator')
 const { Product, ProductType } = require('../models')
 
-const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-
 const typeOptions = [
   { value: 1, desc: 'Tênis' },
   { value: 2, desc: 'Roupas' },
@@ -28,10 +26,7 @@ const ProductController = {
         }
       })
 
-      res.render('detail', {
-        product,
-        toThousand
-      })
+      res.status(200).json(product)
     } catch (error) {
       res.status(400).json({ error })
     }
