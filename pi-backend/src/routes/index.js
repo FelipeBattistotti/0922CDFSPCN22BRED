@@ -32,7 +32,7 @@ router.post(
 
 // # Product
 // GET ALL
-router.get('/product', mainController.index)
+router.get('/product', mainController.showAll)
 // GET - Detail
 router.get('/product/:id', productController.detail)
 // POST - Create

@@ -2,7 +2,7 @@ const { Op } = require('sequelize')
 const { Product } = require('../models')
 
 const MainController = {
-  index: async (req, res) => {
+  showAll: async (req, res) => {
     let search = ''
 
     if (req.query.keywords)
