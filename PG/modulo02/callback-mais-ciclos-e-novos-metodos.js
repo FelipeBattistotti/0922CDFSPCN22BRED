@@ -70,9 +70,8 @@ let bart = {
   corCamiseta: "Laranja"
 }
 
-for(let prop in bart){
-  // console.log(prop)
-  console.log(prop , bart[prop])
+for (let dado in bart) {
+  console.log(bart[dado])
 }
  //_____________________________________________________
 // Exercício2
