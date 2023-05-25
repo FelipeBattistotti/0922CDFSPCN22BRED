@@ -28,6 +28,8 @@ const UserController = {
 
           await User.create(newUser) // cria o registro no banco de dados
 
+          res.status(201).json({ msg: 'Usuário criado com sucesso!' })
+
       } else res.status(400).json({ error: "Usuário já cadastrado!" })
     } catch (error) {
       res.status(400).json({ error })
