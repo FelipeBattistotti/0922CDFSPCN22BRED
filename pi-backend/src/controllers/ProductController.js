@@ -87,7 +87,7 @@ const ProductController = {
             }
           ) // atualiza o registro no banco de dados
 
-          res.redirect('/')
+          res.status(200).json({ msg: 'Produto alterado com sucesso!' })
       } else return res.status(400).json({ error: 'Produto não encontrado.' })
 
     } catch (error) {
@@ -105,7 +105,7 @@ const ProductController = {
         }
       }) // remove o registro do banco de dados
 
-      res.redirect('/')
+      res.status(200).json({ msg: 'Produto excluído!' })
     } catch (error) {
       res.status(400).json({ error })
     }
