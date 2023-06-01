@@ -1,23 +1,49 @@
 import React from "react"
 
-import './../../App.css'
-import logo from './../../logo.svg'
+import logo from './../../images/logo.svg'
 
 const Header = () => {
   return (
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>
-        Edit <code>src/App.js</code> and save to reload
-      </p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
+    <header className="main-header">
+      <div className="container">
+        <div className="row align-items-center">
+          <div className="col-5 col-md-2">
+            <a href="/" className="main-header_home-link">
+              <img src={logo} />
+            </a>
+          </div>
+
+          <div className="col-7 col-md-6">
+            <form action="/search" method="GET" className="search-form">
+              <input
+                className="search-form_input"
+                type="text"
+                name="keywords"
+                placeholder="Pesquise produtos, marcas e muito mais"
+              />
+              <button type="submit" className="search-form_button"><i className="fas fa-search"></i></button>
+            </form>
+          </div>
+
+          <div className="col-12 col-md-4">
+          </div>
+        </div>
+
+        <button className="btn-toggle-navbar">
+          <i className="fas fa-bars"></i>
+        </button>
+
+        <nav className="main-navbar">
+          <ul className="left-navbar">
+            <li><a href="/product/create">Incluir Produto</a></li>
+          </ul>
+          <ul className="right-navbar">
+            <li><a href="/user/create">Crie sua conta <i className="far fa-address-card"></i></a></li>
+            <li><a href="/user/login">Entrar <i className="fas fa-sign-in-alt"></i></a></li>
+            {/* <li><a href="#">Carrinho<i className="fas fa-shopping-basket"></i></a></li> */}
+          </ul>
+        </nav>
+      </div>
     </header>
   )
 }

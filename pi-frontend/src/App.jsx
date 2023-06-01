@@ -1,12 +1,12 @@
 import React from 'react';
-import './App.css';
-import Header from './components/Header';
+import Router from './router';
+import './css/app.css'
 
 function App() {
   return (
     // JXS
     <div className="App">
-      <Header />
+      <Router />
     </div>
   );
 }
