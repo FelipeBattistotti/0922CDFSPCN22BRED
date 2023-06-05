@@ -1,10 +1,13 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 import logo from './../../images/logo.svg'
 
 const Header = () => {
+  const [keywords, setKeywords] = useState('')
 
-  const [keywords, setKeywords] = useState()
+  useEffect(() => {
+    console.log('AQUI')
+  }, [])
 
   return (
     <header className="main-header">

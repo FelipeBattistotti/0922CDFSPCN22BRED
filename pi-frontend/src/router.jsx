@@ -6,6 +6,9 @@ import {
 } from 'react-router-dom'
 
 import Home from "./pages/Home"
+import ProductDetail from "./pages/ProductDetail"
+import ProductCreate from "./pages/ProductCreate"
+import ProductUpdate from "./pages/ProductUpdate"
 
 const Router = () => {
   return (
@@ -18,15 +21,15 @@ const Router = () => {
         />
         <Route
           path="/product-detail"
-          element={null}
+          element={<ProductDetail />}
         />
         <Route
           path="/product-create"
-          element={null}
+          element={<ProductCreate />}
         />
         <Route
           path="/product-update"
-          element={null}
+          element={<ProductUpdate />}
         />
       </Routes>
     </BrowserRouter>
