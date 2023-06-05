@@ -1,8 +1,11 @@
-import React from "react"
+import React, { useState } from "react"
 
 import logo from './../../images/logo.svg'
 
 const Header = () => {
+
+  const [keywords, setKeywords] = useState()
+
   return (
     <header className="main-header">
       <div className="container">
@@ -20,6 +23,8 @@ const Header = () => {
                 type="text"
                 name="keywords"
                 placeholder="Pesquise produtos, marcas e muito mais"
+                value={keywords}
+                onChange={e => setKeywords(e.target.value)}
               />
               <button type="submit" className="search-form_button"><i className="fas fa-search"></i></button>
             </form>
