@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 
 import logo from './../../images/logo.svg'
 
@@ -6,7 +7,6 @@ const Header = () => {
   const [keywords, setKeywords] = useState('')
 
   useEffect(() => {
-    console.log('AQUI')
   }, [])
 
   return (
@@ -46,8 +46,16 @@ const Header = () => {
             <li><a href="/product/create">Incluir Produto</a></li>
           </ul>
           <ul className="right-navbar">
-            <li><a href="/user/create">Crie sua conta <i className="far fa-address-card"></i></a></li>
-            <li><a href="/user/login">Entrar <i className="fas fa-sign-in-alt"></i></a></li>
+            <li>
+              <Link href="/user-create">
+                Crie sua conta <i className="far fa-address-card"></i>
+              </Link>
+            </li>
+            <li>
+              <Link to="/login">
+                Entrar <i className="fas fa-sign-in-alt"></i>
+              </Link>
+            </li>
             {/* <li><a href="#">Carrinho<i className="fas fa-shopping-basket"></i></a></li> */}
           </ul>
         </nav>
