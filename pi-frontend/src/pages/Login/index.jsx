@@ -24,9 +24,9 @@ const Login = () => {
               <div className="col-7">
                 <label for="email" className="form-label">E-mail:</label>
                 <input
+                  id="email"
                   className="form-input"
                   type="email"
-                  id="email"
                   name="email"
                   placeholder="Informe o seu e-mail"
                   value={email}
@@ -36,9 +36,9 @@ const Login = () => {
               <div className="col-7">
                 <label for="pwd" className="form-label">Senha:</label>
                 <input
+                  id="pwd"
                   className="form-input"
                   type="password"
-                  id="pwd"
                   name="pwd"
                   placeholder="Informe a senha"
                   value={pwd}
