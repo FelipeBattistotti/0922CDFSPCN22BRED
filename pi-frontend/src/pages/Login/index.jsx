@@ -46,7 +46,11 @@ const Login = () => {
                 />
               </div>
               <div className="col-12">
-                <button type="submit" className="buy-now-button">Entrar</button>
+                <button
+                  className="buy-now-button"
+                >
+                  Entrar
+                </button>
               </div>
             </div>
           </form>
