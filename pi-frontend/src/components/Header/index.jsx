@@ -47,7 +47,7 @@ const Header = () => {
           </ul>
           <ul className="right-navbar">
             <li>
-              <Link href="/user-create">
+              <Link to="/user-create">
                 Crie sua conta <i className="far fa-address-card"></i>
               </Link>
             </li>
