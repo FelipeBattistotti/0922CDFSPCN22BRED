@@ -1,9 +1,22 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
+import api from "../../services/api"
 
 const Home = () => {
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    loadProducts()
+  }, [])
+
+  const loadProducts = async () => {
+    const response = await api.get('product')
+    setProducts(response.data)
+  }
+
   return (
     <>
       <Header />
@@ -15,29 +28,34 @@ const Home = () => {
           <div className="col-12">
             <h2 className="products-title">Ofertas</h2>
           </div>
-          {/* <% products.forEach((product) => { let finalPrice = (product.price * ((100 - product.discount) / 100)).toFixed(0) %>
-            <div className="col-12 col-sm-6 col-lg-3">
+
+          {products.map((product) => (
+            <div key={product.id} className="col-12 col-sm-6 col-lg-3">
               <section className="product-box">
-                <a href="/product/detail/<%= product.id %>">
+                <Link
+                  to="/product-detail"
+                  state={{ id: product.id }}
+                >
                   <figure className="product-box_image">
-                    <img src="/images/products/<%= product.image %>" alt="imagen do produto">
+                    <img src={`http://localhost:3000/images/products/${product.image}`} alt="imagen do produto" />
                   </figure>
                   <article className="product-box_data">
                     <h2>
-                      <%= toThousand(finalPrice) %>
+                      {(product.price * ((100 - product.discount) / 100)).toFixed(0)}
                     </h2>
                     <span>
-                      <%= product.discount %> %OFF
+                      {product.discount}% OFF
                     </span>
                     <p>
-                      <%= product.name %>
+                      {product.name}
                     </p>
                     <i className="fas fa-truck"></i>
                   </article>
-                </a>
+                </Link>
               </section>
             </div>
-          <% }) %> */}
+          ))}
+
         </div>
       </div>
 
