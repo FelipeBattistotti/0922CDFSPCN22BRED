@@ -22,7 +22,7 @@ const Router = () => {
           element={<Home />}
         />
         <Route
-          path="/login"
+          path="/user-login"
           element={<Login />}
         />
         <Route

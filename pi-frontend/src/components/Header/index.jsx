@@ -52,7 +52,7 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link to="/login">
+              <Link to="/user-login">
                 Entrar <i className="fas fa-sign-in-alt"></i>
               </Link>
             </li>
