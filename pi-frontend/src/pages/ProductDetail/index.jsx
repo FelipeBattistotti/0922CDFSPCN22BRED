@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
@@ -17,6 +17,10 @@ const ProductDetail = () => {
   const loadProduct = async () => {
     const response = await api.get(`product/${location.state.id}`)
     setProduct(response.data)
+  }
+
+  const handleDelete = () => {
+    console.log('DELETAR REGISTRO')
   }
 
   return (
@@ -76,10 +80,19 @@ const ProductDetail = () => {
                   <a href="#" className="buy-now-button">COMPRAR AGORA</a>
                   <hr />
 
-                  <a href="/product/update/<%= product.id %>" className="action-button edit">Editar Produto</a>
-                  <form action="/product/<%= product.id %>?_method=DELETE" method="POST" style={{ display: "inline-flex" }}>
-                    <button type="submit" className="action-button delete">Remover Produto</button>
-                  </form>
+                  <Link
+                    className="action-button edit"
+                    to="/product-update"
+                    state={{ id: product.id }}
+                  >
+                    Editar Produto
+                  </Link>
+                  <button
+                    className="action-button delete"
+                    onClick={handleDelete}
+                  >
+                    Remover Produto
+                  </button>
                 </article>
               </div>
             </div>

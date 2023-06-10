@@ -23,7 +23,6 @@ const Login = () => {
       document.cookie = `auth=${response.data.token}; expires=${new Date(2100, 0, 1)}`
 
       alert('Login realizado!')
-
       navigate('/')
 
     } catch (error) {
@@ -44,7 +43,7 @@ const Login = () => {
         <div className="col-12">
           <div className="row product-detail">
             <div className="col-7">
-              <label for="email" className="form-label">E-mail:</label>
+              <label htmlFor="email" className="form-label">E-mail:</label>
               <input
                 id="email"
                 className="form-input"
@@ -56,7 +55,7 @@ const Login = () => {
               />
             </div>
             <div className="col-7">
-              <label for="pwd" className="form-label">Senha:</label>
+              <label htmlFor="pwd" className="form-label">Senha:</label>
               <input
                 id="pwd"
                 className="form-input"

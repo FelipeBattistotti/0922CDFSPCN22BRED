@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { Link } from "react-router-dom"
 
 import logo from './../../images/logo.svg'
@@ -6,17 +6,17 @@ import logo from './../../images/logo.svg'
 const Header = () => {
   const [keywords, setKeywords] = useState('')
 
-  useEffect(() => {
-  }, [])
-
   return (
     <header className="main-header">
       <div className="container">
         <div className="row align-items-center">
           <div className="col-5 col-md-2">
-            <a href="/" className="main-header_home-link">
+            <Link
+              className="main-header_home-link"
+              to="/"
+            >
               <img src={logo} />
-            </a>
+            </Link>
           </div>
 
           <div className="col-7 col-md-6">
@@ -43,7 +43,11 @@ const Header = () => {
 
         <nav className="main-navbar">
           <ul className="left-navbar">
-            <li><a href="/product/create">Incluir Produto</a></li>
+            <li>
+              <Link to="/product-create">
+                Incluir Produto
+              </Link>
+            </li>
           </ul>
           <ul className="right-navbar">
             <li>

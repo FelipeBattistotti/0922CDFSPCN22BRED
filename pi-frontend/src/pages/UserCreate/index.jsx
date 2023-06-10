@@ -24,7 +24,7 @@ const UserCreate = () => {
 					<form action="/user" method="POST">
 						<div className="row product-detail">
 							<div className="col-12">
-								<label for="name" className="form-label">Nome:</label>
+								<label htmlFor="name" className="form-label">Nome:</label>
 								<input
                   id="name"
                   className="form-input"
@@ -36,7 +36,7 @@ const UserCreate = () => {
                 />
 							</div>
 							<div className="col-12">
-								<label for="email" className="form-label">E-mail:</label>
+								<label htmlFor="email" className="form-label">E-mail:</label>
 								<input
                   id="email"
                   className="form-input"
@@ -48,7 +48,7 @@ const UserCreate = () => {
                 />
 							</div>
 							<div className="col-12">
-								<label for="pwd" className="form-label">Senha:</label>
+								<label htmlFor="pwd" className="form-label">Senha:</label>
 								<input
                   id="pwd"
                   className="form-input"
@@ -60,7 +60,7 @@ const UserCreate = () => {
                 />
 							</div>
 							<div className="col-12">
-								<label for="pwdConfirm" className="form-label">Confirmar Senha:</label>
+								<label htmlFor="pwdConfirm" className="form-label">Confirmar Senha:</label>
 								<input
                   id="pwdConfirm"
                   className="form-input"
