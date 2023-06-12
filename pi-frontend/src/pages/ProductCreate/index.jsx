@@ -1,14 +1,49 @@
 import React, { useState } from "react"
+import { useNavigate } from 'react-router-dom'
 
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
+import { getCookie } from "../../utils"
+import api from "../../services/api"
 
 const ProductCreate = () => {
+  const navigate = useNavigate()
+
   const [name, setName] = useState('')
   const [idProductType, setIdProductType] = useState(1)
   const [price, setPrice] = useState(0)
   const [discount, setDiscount] = useState(0)
   const [description, setDescription] = useState('')
+  const [selectedImage, setSelectedImage] = useState()
+
+  const handleSave = async () => {
+    // const product = {
+    //   name: name,
+    //   id_product_type: idProductType,
+    //   price: price,
+    //   discount: discount,
+    //   description: description
+    // }
+
+    const formData = new FormData()
+    formData.append('name', name)
+    formData.append('id_product_type', idProductType)
+    formData.append('price', price)
+    formData.append('discount', discount)
+    formData.append('description', description)
+    if (selectedImage)
+        formData.append('', selectedImage)
+
+    try {
+      await api.post('/product', formData, { headers: { Authorization: getCookie('auth') } })
+
+      alert('Produto criado com sucesso!')
+      navigate('/')
+
+    } catch (error) {
+      alert(error.response.data.error)
+    }
+  }
 
   return (
     <>
@@ -91,11 +126,13 @@ const ProductCreate = () => {
                 className="form-input"
                 type="file"
                 name="image"
+                onChange={e => setSelectedImage(e.target.files[0])}
               />
             </div>
             <div className="col-12">
               <button
                 className="buy-now-button"
+                onClick={handleSave}
               >
                 Salvar
               </button>
