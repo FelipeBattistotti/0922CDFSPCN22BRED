@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
 import api from "../../services/api"
+import Input from "../../components/Input"
 
 const Login = () => {
   const navigate = useNavigate()
@@ -43,12 +44,10 @@ const Login = () => {
         <div className="col-12">
           <div className="row product-detail">
             <div className="col-7">
-              <label htmlFor="email" className="form-label">E-mail:</label>
-              <input
+              <Input
                 id="email"
-                className="form-input"
+                label="E-mail:"
                 type="email"
-                name="email"
                 placeholder="Informe o seu e-mail"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
