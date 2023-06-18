@@ -1,10 +1,20 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import logo from './../../images/logo.svg'
+import { getCookie } from "../../utils"
 
 const Header = () => {
+  const navigate = useNavigate()
+
   const [keywords, setKeywords] = useState('')
+
+  const handleLogout = async () => {
+    document.cookie = `auth=; expires=${new Date(0)}`; // delete cookie
+
+    alert('Logout realizado!')
+    navigate('/')
+  }
 
   return (
     <header className="main-header">
@@ -50,17 +60,30 @@ const Header = () => {
             </li>
           </ul>
           <ul className="right-navbar">
-            <li>
-              <Link to="/user-create">
-                Crie sua conta <i className="far fa-address-card"></i>
-              </Link>
-            </li>
-            <li>
-              <Link to="/user-login">
-                Entrar <i className="fas fa-sign-in-alt"></i>
-              </Link>
-            </li>
-            {/* <li><a href="#">Carrinho<i className="fas fa-shopping-basket"></i></a></li> */}
+            {getCookie('auth') === '' ? (
+              <>
+                <li>
+                  <Link to="/user-create">
+                    Crie sua conta <i className="far fa-address-card"></i>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/user-login">
+                    Entrar <i className="fas fa-sign-in-alt"></i>
+                  </Link>
+                </li>
+                {/* <li><a href="#">Carrinho<i className="fas fa-shopping-basket"></i></a></li> */}
+              </>
+            ) :
+              <li>
+                <button
+                  className="action-button delete"
+                  onClick={handleLogout}
+                >
+                  Sair <i className="fas fa-sign-in-alt"></i>
+                </button>
+              </li>
+            }
           </ul>
         </nav>
       </div>
