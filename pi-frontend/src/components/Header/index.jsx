@@ -10,7 +10,8 @@ const Header = () => {
 
   const [keywords, setKeywords] = useState('')
 
-  const handleSearch = async () => {
+  const handleSearch = async (e) => {
+    e.preventDefault()
     try {
       const response = await api.get('product', { params: { keywords } })
       navigate('/search', { state: { productsSearch: response.data } })
@@ -40,7 +41,7 @@ const Header = () => {
           </div>
 
           <div className="col-7 col-md-6">
-            <div className="search-form">
+            <form className="search-form" onSubmit={handleSearch}>
               <input
                 className="search-form_input"
                 type="search"
@@ -51,11 +52,11 @@ const Header = () => {
               />
               <button
                 className="search-form_button"
-                onClick={handleSearch}
+                type="submit"
               >
                 <i className="fas fa-search"></i>
               </button>
-            </div>
+            </form>
           </div>
 
           <div className="col-12 col-md-4">
