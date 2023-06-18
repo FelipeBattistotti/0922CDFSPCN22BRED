@@ -20,14 +20,18 @@ const ProductUpdate = () => {
   }, [])
 
   const loadProduct = async () => {
-    const response = await api.get(`product/${location.state.id}`)
+    try {
+      const response = await api.get(`product/${location.state.id}`)
 
-    setName(response.data.name)
-    setIdProductType(response.data.productType.id)
-    setPrice(response.data.price)
-    setDiscount(response.data.discount)
-    setDescription(response.data.description)
-    setProduct(response.data)
+      setName(response.data.name)
+      setIdProductType(response.data.productType.id)
+      setPrice(response.data.price)
+      setDiscount(response.data.discount)
+      setDescription(response.data.description)
+      setProduct(response.data)
+    } catch (error) {
+      alert(error.response.data.error)
+    }
   }
 
   return (

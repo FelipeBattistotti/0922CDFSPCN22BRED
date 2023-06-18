@@ -15,8 +15,12 @@ const ProductDetail = () => {
   }, [])
 
   const loadProduct = async () => {
-    const response = await api.get(`product/${location.state.id}`)
-    setProduct(response.data)
+    try {
+      const response = await api.get(`product/${location.state.id}`)
+      setProduct(response.data)
+    } catch (error) {
+      alert(error.response.data.error)
+    }
   }
 
   const handleDelete = () => {
