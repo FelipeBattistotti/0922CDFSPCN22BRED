@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react"
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
+import { getCookie } from "../../utils"
 import api from "../../services/api"
 
 const ProductDetail = () => {
   const location = useLocation()
+  const navigate = useNavigate()
 
   const [product, setProduct] = useState()
 
@@ -23,8 +25,16 @@ const ProductDetail = () => {
     }
   }
 
-  const handleDelete = () => {
-    console.log('DELETAR REGISTRO')
+  const handleDelete = async () => {
+    try {
+      await api.delete(`/product/${location.state.id}`, { headers: { Authorization: getCookie('auth') } })
+
+      alert('Produto excluído!')
+      navigate('/')
+
+    } catch (error) {
+      alert(error.response.data.error)
+    }
   }
 
   return (
