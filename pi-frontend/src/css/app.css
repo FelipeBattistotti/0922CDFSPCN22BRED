@@ -370,8 +370,7 @@ hr {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 15px 30px;
-  margin-top: 15px;
+  padding: 5px;
 }
 
 .action-button.edit {

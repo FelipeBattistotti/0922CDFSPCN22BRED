@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom'
 
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
-import api from "../../services/api"
 import Input from "../../components/Input"
+import api from "../../services/api"
 
 const Login = () => {
   const navigate = useNavigate()

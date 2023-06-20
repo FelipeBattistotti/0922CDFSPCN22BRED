@@ -67,7 +67,7 @@ const ProductController = {
       const productToEdit = await Product.findByPk(id)
     
       if (productToEdit != undefined) {
-          if (req.files[0] !== undefined) {
+          if (req.files && req.files[0]) {
               image = req.files[0].filename
           } else {
               image = productToEdit.image

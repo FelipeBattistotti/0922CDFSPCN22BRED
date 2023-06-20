@@ -1,20 +1,32 @@
 import React, { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
 import api from "../../services/api"
 
 const Home = () => {
+  const location = useLocation()
+
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-    loadProducts()
+    if (location.state && location.state.productsSearch)
+        loadProductsLocation()
+    else loadProducts()
   }, [])
 
+  const loadProductsLocation = () => {
+    setProducts(location.state.productsSearch)
+  }
+
   const loadProducts = async () => {
-    const response = await api.get('product')
-    setProducts(response.data)
+    try {
+      const response = await api.get('product')
+      setProducts(response.data)
+    } catch (error) {
+      alert(error.response.data.error)
+    }
   }
 
   return (
