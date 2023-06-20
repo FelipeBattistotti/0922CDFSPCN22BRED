@@ -69,11 +69,13 @@ const Header = () => {
 
         <nav className="main-navbar">
           <ul className="left-navbar">
-            <li>
-              <Link to="/product-create">
-                Incluir Produto
-              </Link>
-            </li>
+            {getCookie('auth') !== '' ? (
+              <li>
+                <Link to="/product-create">
+                  Incluir Produto
+                </Link>
+              </li>
+            ) : null}
           </ul>
           <ul className="right-navbar">
             {getCookie('auth') === '' ? (
