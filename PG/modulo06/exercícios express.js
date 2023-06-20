@@ -545,13 +545,12 @@ window.addEventListener('load', () => {
 const express = require('express');
 const router = express.Router();
 const UsuarioController = require('../controllers/UsuarioController');
-const { check, validationResult, body } = require('express-validator');
+const { check: checar, validationResult, body } = require('express-validator');
 
 router.post('/cadastro', [
-    check('email').isEmail(),
-    check('password').isLength({min: 6}),
+    checar('email').isEmail(),
+    checar('password').isLength({min: 6}),
 ],  UsuarioController.registro);
-
 
 // ### **Site em manutenção**
 
