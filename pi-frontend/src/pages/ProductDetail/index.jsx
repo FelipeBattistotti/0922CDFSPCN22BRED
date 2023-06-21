@@ -92,21 +92,26 @@ const ProductDetail = () => {
                   </ul>
 
                   <a href="#" className="buy-now-button">COMPRAR AGORA</a>
+
                   <hr />
 
-                  <Link
-                    className="action-button edit"
-                    to="/product-update"
-                    state={{ id: product.id }}
-                  >
-                    Editar Produto
-                  </Link>
-                  <button
-                    className="action-button delete"
-                    onClick={handleDelete}
-                  >
-                    Remover Produto
-                  </button>
+                  {getCookie('auth') !== '' ? (
+                    <>
+                      <Link
+                        className="action-button edit"
+                        to="/product-update"
+                        state={{ id: product.id }}
+                      >
+                        Editar Produto
+                      </Link>
+                      <button
+                        className="action-button delete"
+                        onClick={handleDelete}
+                      >
+                        Remover Produto
+                      </button>
+                    </>
+                  ) : null}
                 </article>
               </div>
             </div>
