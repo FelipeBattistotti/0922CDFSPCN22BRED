@@ -8,6 +8,7 @@ const router = express.Router()
 const mainController = require('../controllers/MainController')
 const productController = require('../controllers/ProductController')
 const userController = require('../controllers/UserController')
+const orderController = require('../controllers/OrderController')
 
 /**
  * Middlewares
@@ -52,5 +53,13 @@ router.post(
 router.put('/product/:id', auth, upload.any(), productController.update)
 // DELETE - Delete
 router.delete('/product/:id', auth, productController.delete)
+
+// # Order
+// GET - Detail
+router.get('/order', auth, orderController.detail)
+// POST - Create
+router.post('/order', auth, orderController.create)
+// PUT - Update
+router.put('/order/:id', auth, orderController.update)
 
 module.exports = router

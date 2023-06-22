@@ -20,8 +20,12 @@ module.exports = (sequelize, DataType) => {
     })
     Order.belongsToMany(modelsList.Product, {
       foreignKey: 'id_product',
-      as: 'orderItem',
+      as: 'products',
       through: modelsList.OrderItem
+    })
+    Order.hasMany(modelsList.OrderItem, {
+      foreignKey: 'id_order',
+      as: 'orderItems'
     })
   }
   return Order

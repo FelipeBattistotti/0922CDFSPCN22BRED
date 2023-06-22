@@ -91,7 +91,7 @@ const ProductDetail = () => {
                     </li>
                   </ul>
 
-                  <a href="#" className="buy-now-button">COMPRAR AGORA</a>
+                  <a href="#" className="buy-now-button">Adicionar ao carrinho</a>
 
                   <hr />
 
