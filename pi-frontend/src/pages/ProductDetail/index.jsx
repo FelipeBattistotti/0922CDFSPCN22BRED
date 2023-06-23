@@ -37,6 +37,8 @@ const ProductDetail = () => {
     }
   }
 
+  const handleAddCart = () => {}
+
   return (
     <>
       <Header />
@@ -91,7 +93,12 @@ const ProductDetail = () => {
                     </li>
                   </ul>
 
-                  <a href="#" className="buy-now-button">Adicionar ao carrinho</a>
+                  <button
+                    className="buy-now-button"
+                    onClick={handleAddCart}
+                  >
+                    Adicionar ao carrinho
+                  </button>
 
                   <hr />
 

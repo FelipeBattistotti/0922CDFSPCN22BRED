@@ -50,9 +50,11 @@ const OrderController = {
     let orderId = 0
 
     try {
+      // confere se o usuário tem um carrinho ativo
       const hasOrder = await Order.findOne({
         where: {
-          id_user: userId
+          id_user: userId,
+          status: 0
         }
       })
 
@@ -67,6 +69,7 @@ const OrderController = {
           orderId = order.id
       } else orderId = hasOrder.id
 
+      // verifica se já tem o produto inserido no carrinho
       const hasOrderItem = await OrderItem.findOne({
         where: {
           id_order: orderId,
@@ -84,7 +87,7 @@ const OrderController = {
       }
       await OrderItem.create(newOrderItem)
 
-      res.status(200).json({ msg: 'Item inserido no Carrinho!' })
+      res.status(201).json({ msg: 'Item inserido no Carrinho!' })
 
     } catch (error) {
       res.status(400).json({ error })
